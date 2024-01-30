@@ -60,6 +60,7 @@ body {
 .home-content h1 {
     font-size: 56px;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .home-content h3 {
@@ -70,6 +71,7 @@ body {
 
 .home-content p {
     font-size: 16px;
+    margin: 20px 0 40px; /*adds space in top and bottom of the p element*/
 }
 
 .home-content .btn-box {
@@ -80,6 +82,7 @@ body {
 }
 
 .btn-box a {
+    position: relative;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -93,9 +96,40 @@ body {
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 1px;
+    z-index: 1;
+    overflow: hidden; /*esconder las partes sobresalientes del fondo con respecto al elemento ya creado (botón)*/
+    transition: .5s;
+} /*configuraciones para ambos botones*/
+
+.btn-box a:hover {
+    color: #00abf0;
 }
 
 .btn-box a:nth-child(2) {
-    background: transparent;
-    color: #00abf0;
+    background: transparent; /*el fondo del elemento a es transparente*/
+    color: #00abf0; /*el color del texto del elemento a (anchor=me lleva a otra sección o pagina) es azul*/
+} 
+
+.btn-box a:nth-child(2):hover {
+    color: #081b29;
+} /*esto es para que cuando el mouse pase por arriba del botón, del elemento a #2, cambie a azul oscuro.,*/
+
+.btn-box a:nth-child(2)::before {
+    background: #00abf0;
+} /*::before es para agregar contenido adicional a nuestro elemento sin afectar el contenido anterior.*/
+
+.btn-box a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #081b29;
+    z-index: -1;
+    transition: .5s;
+}
+
+.btn-box a:hover::before {
+    width: 100%;
 }
